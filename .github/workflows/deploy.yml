@@ -11,6 +11,10 @@ jobs:
   test:
     environment: testing
     runs-on: ubuntu-latest
+    # To add own custom test runner need to add container field below runs-on field - then need to add name of image that is available to use
+    container:
+      image: node:16 # Runs node version 16 in container
+      # env: - some images require env variables to work, can declare them under env field.
     env:
       MONGODB_CONNECTION_PROTOCOL: mongodb+srv
       MONGODB_CLUSTER_ADDRESS: cluster0.juzs8.mongodb.net
