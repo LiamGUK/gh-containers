@@ -20,6 +20,9 @@ jobs:
 
       # As job is using a container service, simply add service name given below to set the database address to the services image used below.
       MONGODB_CLUSTER_ADDRESS: mongodb
+      # If not running services image inside a docker container and just using built in github runner need to add DB address using below IP address instead.
+      # The port number is then declared in separate field under services field.
+      # MONGODB_CLUSTER_ADDRESS: 127.0.0.1:27017
 
       # MONGODB_CONNECTION_PROTOCOL: mongodb+srv
       # MONGODB_CLUSTER_ADDRESS: cluster0.juzs8.mongodb.net
@@ -38,6 +41,9 @@ jobs:
       mongodb:
         # Use the mongo docker services image to create a mongodb database in container
         image: mongo
+        # Ports field only needed if not running services in a custom docker container
+        # ports:
+        #   - 27017:27017
         env:
           # Need to supply the below env variables in order for docker container to connect to the database - can be given any values
           # Need to use the same values in the above container so that when main container image attempts to connect to database it connects to this copy version instead of production database
